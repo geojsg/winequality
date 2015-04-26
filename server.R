@@ -64,34 +64,19 @@ shinyServer(
 		},height = 300)
 	
 	
-	##output$estquality<-renderText({
-	  ##input$estimate
-	  ##if (input$estimate == 0)
-	  ##  return()
-	  ##myselection<-isolate(c(input$crit1,input$crit2,input$crit3,input$crit4,input$crit5,input$crit6,input$crit7,input$crit8,input$crit9,input$crit10,input$crit11,0))
-	  ##e<-rbind(wine,myselection)
-    ##predict(fit.rf,newdata=e[nrow(e),1:11])
-	  ##})
 	estq<-reactive({
 	  input$estimate
     myselection<-isolate(c(input$crit1,input$crit2,input$crit3,input$crit4,input$crit5,input$crit6,input$crit7,input$crit8,input$crit9,input$crit10,input$crit11,0))
 	  e<-rbind(wine,myselection)
 	  predict(fit.rf,newdata=e[nrow(e),1:11])
 	})
-  ##output$pred<-renderText({estq()})
+
 	output$estquality<-renderPlot({
     input$estimate
-    ##myselection<-isolate(c(input$crit1,input$crit2,input$crit3,input$crit4,input$crit5,input$crit6,input$crit7,input$crit8,input$crit9,input$crit10,input$crit11,0))
-    ##e<-rbind(wine,myselection)
     image(3:8, 1, as.matrix(3:8), col = cols[3:8],ylab="",main=round(estq(),2),yaxt="n",bty="n",xlab="",xlim=c(3,8))
     abline(v=estq(),lwd=5)
 	},height=160)
-    ##image(3:8, 1, as.matrix(3:8), col = "black")
-	  ##hist(rnorm(10))
-	  ##input$estimate
-	      
-	  #
-	  ##abline(v=estq,col="black",lwd=5)
+
 	
 	}
 )
